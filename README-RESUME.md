@@ -4,7 +4,7 @@ Este documento sirve como guía rápida conceptual y base de conocimiento para e
 
 ---
 
-## 🎯 Definición del Perfil Profesional
+## 🎯 Competencias:
 
 Este laboratorio demuestra competencias clave para el rol de:
 
@@ -25,21 +25,21 @@ Terragrunt actúa como un "wrapper" (envoltorio) inteligente sobre Terraform.
 * **Backend Dinámico:** Definimos la configuración de S3 una sola vez en la raíz. Terragrunt la inyecta automáticamente en cada entorno, generando las rutas correctas (`dev/`, `prod/`).
 * **Código DRY:** Mantenemos la lógica de infraestructura (Módulos) separada de la configuración específica de cada entorno (Live).
 
-### 3. ¿Es esto "Enterprise Grade"? (Grado Empresarial)
+### 3. Es Grado Empresarial
 **SÍ.** No por el tamaño, sino por la madurez y seguridad de la arquitectura:
 * ✅ **Aislamiento:** Cada entorno tiene su propio archivo de estado (`tfstate`) separado. Un error en Dev no rompe Prod.
 * ✅ **Seguridad (SecOps):** El Backend S3 está cifrado (AES-256) y bloqueado al público.
 * ✅ **Modularidad:** Uso de módulos reutilizables en lugar de código monolítico.
 * ✅ **Auditoría (FinOps):** Scripts integrados para control de costos y limpieza de recursos.
 
-### 4. Tu "Elevator Pitch" (Discurso Rápido)
+### 4. Resumen del laboratorio Grado Empresarial.
 > *"Diseñé esta arquitectura para simular un escenario real de alta escala donde Terraform nativo se queda corto. Utilicé Terragrunt para garantizar una infraestructura 100% inmutable y DRY, donde la seguridad del backend se hereda automáticamente y el despliegue de múltiples entornos se gestiona desde un único código base, reduciendo la carga operativa y el riesgo humano."*
 
 ---
 
 ## 🔄 Diagrama de Flujo de la Arquitectura
 
-Este diagrama muestra cómo se mueven los datos desde tu laptop hasta convertirse en infraestructura real en AWS.
+Este diagrama muestra cómo se mueven los datos desde Instacia local WSL hasta convertirse en infraestructura real en AWS.
 
 ```mermaid
 graph TD
