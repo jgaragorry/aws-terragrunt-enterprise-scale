@@ -44,39 +44,39 @@ Este diagrama muestra cómo se mueven los datos desde tu laptop hasta convertirs
 ```mermaid
 graph TD
     %% Definición de Nodos
-    User[🧑‍💻 Ingeniero DevOps<br>(Laptop Local)]
+    User["🧑‍💻 Ingeniero DevOps<br>(Laptop Local)"]
     
     subgraph "Fase 1: Bootstrapping & Config"
-        Scripts[🛠️ Scripts de Automatización<br>(install_tg.sh, 00_init.sh)]
-        BackendConfig[📝 terragrunt.hcl<br>(Raíz: Config Backend S3)]
+        Scripts["🛠️ Scripts de Automatización<br>(install_tg.sh, 00_init.sh)"]
+        BackendConfig["📝 terragrunt.hcl<br>(Raíz: Config Backend S3)"]
     end
     
     subgraph "Fase 2: Orquestación (Terragrunt)"
-        TG_Dev[🧠 Terragrunt DEV<br>(live/dev/terragrunt.hcl)]
-        TG_Prod[🧠 Terragrunt PROD<br>(live/prod/terragrunt.hcl)]
-        Modules[📦 Módulos Terraform<br>(modules/compute-instance/)]
+        TG_Dev["🧠 Terragrunt DEV<br>(live/dev/terragrunt.hcl)"]
+        TG_Prod["🧠 Terragrunt PROD<br>(live/prod/terragrunt.hcl)"]
+        Modules["📦 Módulos Terraform<br>(modules/compute-instance/)"]
     end
     
     subgraph "Fase 3: AWS Cloud (Infrastructure)"
-        S3_Backend[(🪣 AWS S3 Backend<br>Cifrado + Locking)]
+        S3_Backend[("🪣 AWS S3 Backend<br>Cifrado + Locking")]
         
         subgraph "Entorno DEV (us-east-1)"
-            EC2_Dev[🖥️ EC2 t3.micro<br>(Tags: Junior, Puerto 8080)]
+            EC2_Dev["🖥️ EC2 t3.micro<br>(Tags: Junior, Puerto 8080)"]
         end
         
         subgraph "Entorno PROD (us-east-1)"
-            EC2_Prod[🖥️ EC2 t3.micro<br>(Tags: SRE, Puerto 80)]
+            EC2_Prod["🖥️ EC2 t3.micro<br>(Tags: SRE, Puerto 80)"]
         end
     end
     
-    FinOps[💰 Auditoría FinOps<br>(audit_finops.sh)]
+    FinOps["💰 Auditoría FinOps<br>(audit_finops.sh)"]
 
     %% Flujo de Datos
     User -->|1. Ejecuta| Scripts
     Scripts -->|Crea| S3_Backend
     
-    User -->|2. 'terragrunt apply'| TG_Dev
-    User -->|2. 'terragrunt apply'| TG_Prod
+    User -->|"2. 'terragrunt apply'"| TG_Dev
+    User -->|"2. 'terragrunt apply'"| TG_Prod
     
     TG_Dev -->|Inyecta Variables| Modules
     TG_Prod -->|Inyecta Variables| Modules
@@ -86,51 +86,9 @@ graph TD
     Modules -->|3. Llama API AWS| EC2_Dev
     Modules -->|3. Llama API AWS| EC2_Prod
     
-    TG_Dev -.-|Guarda Estado (dev/tfstate)| S3_Backend
-    TG_Prod -.-|Guarda Estado (prod/tfstate)| S3_Backend
+    TG_Dev -.-|"Guarda Estado (dev/tfstate)"| S3_Backend
+    TG_Prod -.-|"Guarda Estado (prod/tfstate)"| S3_Backend
     
     User -->|4. Verifica| FinOps
     FinOps -->|Escanea Tags| EC2_Dev
     FinOps -->|Escanea Tags| EC2_Prod
-```
-
----
-
-<div align="center">
-
-### 👤 Connect with the Author
-
-**Jorge Garagorry**
-<br>
-*Cloud Engineer | DevOps & SRE*
-
-<p>
-  <a href="https://www.linkedin.com/in/jgaragorry/">
-    <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin" alt="LinkedIn"/>
-  </a>
-  <a href="https://github.com/jgaragorry">
-    <img src="https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github" alt="GitHub"/>
-  </a>
-</p>
-
-<p>
-  <a href="https://www.geekmonkeytech.com">
-    <img src="https://img.shields.io/badge/Portafolio-GeekMonkeyTech-ff69b4?style=for-the-badge&logo=coderwall" alt="Portfolio"/>
-  </a>
-  <a href="https://www.softraincorp.com">
-    <img src="https://img.shields.io/badge/Web-SoftRainCorp-blue?style=for-the-badge&logo=google-cloud" alt="Website"/>
-  </a>
-</p>
-
-<p>
-  <a href="https://chat.whatsapp.com/ENuRMnZ38fv1pk0mHlSixa">
-    <img src="https://img.shields.io/badge/WhatsApp-Join_Community-25D366?style=for-the-badge&logo=whatsapp" alt="WhatsApp"/>
-  </a>
-  <a href="https://www.tiktok.com/@softtraincorp">
-    <img src="https://img.shields.io/badge/TikTok-@softtraincorp-000000?style=for-the-badge&logo=tiktok" alt="TikTok"/>
-  </a>
-</p>
-
-<p><i>"Transforming complex infrastructure into simple, automated code."</i></p>
-
-</div>
