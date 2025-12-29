@@ -125,7 +125,19 @@ Si deseas eliminar el Bucket S3 que contiene los estados (para evitar costos de 
 ```
 
 ---
-👤 **Autor:** Jorge Garagorry
-💼 **Rol:** Cloud Architect & DevOps Engineer
-🔗 **LinkedIn:** https://www.linkedin.com/in/jgaragorry/
-🚀 **GitHub:** https://github.com/jgaragorry
+
+<div align="center">
+
+### 👨‍💻 Author & Maintainer
+
+**Jorge Garagorry**
+*Cloud System Administrator | DevOps Instructor*
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect_on_LinkedIn-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/jgaragorry/)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow_@jgaragorry-181717?style=for-the-badge&logo=github)](https://github.com/jgaragorry)
+
+<p><i>"Teaching the Cloud, one module at a time."</i></p>
+
+**⭐ Don't forget to star this repo if you found the architecture useful! ⭐**
+
+</div>
